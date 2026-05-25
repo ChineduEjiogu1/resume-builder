@@ -1,1 +1,69 @@
 /* app.css — styles for the EDITOR UI: forms, buttons, two-pane layout. Screen only. */
+
+.name-and-contact-info {
+  text-align: center;
+}
+
+h1 {
+  border-bottom: 2px solid black;
+}
+
+h2 {
+  border-bottom: 2px solid black;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.entry-container {
+  margin-bottom: 1rem;
+}
+
+.entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.entry-title-block {
+  text-align: left;
+}
+
+.entry-title-block h3,
+.entry-title-block p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.meta-block {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.heavy-text,
+span {
+  font-weight: bold;
+}
+
+.describe-experience {
+  margin-top: 0.35rem;
+  margin-bottom: 0;
+  padding-left: 1.25rem;
+  text-align: left;
+  list-style-position: outside;
+}
+
+.describe-experience li {
+  margin-bottom: 0.25rem;
+}
+
+.describe-skills-interest {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 0.35rem;
+  text-align: left;
+}
+
+.describe-skills-interest li {
+  margin-bottom: 0.25rem;
+}
