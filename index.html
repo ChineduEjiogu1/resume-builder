@@ -14,164 +14,63 @@
   <!-- Two panes: the editor (form inputs) and the live preview -->
   <main id="app">
     <section id="editor">
-      <!-- form inputs render here -->
+      <h2>Editor</h2>
+
+      <button type="button" class="editor-btn export-btn" data-action="export-pdf">
+        Export PDF
+      </button>
+
+      <button type="button" class="editor-btn danger-btn reset-btn" data-action="reset-resume">
+        Reset Saved Resume
+      </button>
+
+      <p id="save-status" class="save-status">Saved locally</p>
+      <p id="page-warning" class="page-warning" aria-live="polite"></p>
+
+      <h3>Basics</h3>
+
+      <div class="form-group">
+        <label for="name-input">Name</label>
+        <input id="name-input" class="basics-input" type="text" data-field="name" placeholder="Enter your full name" />
+      </div>
+
+      <div class="form-group">
+        <label for="address-input">Address</label>
+        <input id="address-input" class="basics-input" type="text" data-field="address"
+          placeholder="Enter your address" />
+      </div>
+
+      <div class="form-group">
+        <label for="city-state-input">City, State</label>
+        <input id="city-state-input" class="basics-input" type="text" data-field="cityState"
+          placeholder="Enter city and state" />
+      </div>
+
+      <div class="form-group">
+        <label for="email-input">Email</label>
+        <input id="email-input" class="basics-input" type="email" data-field="email" placeholder="Enter your email" />
+      </div>
+
+      <div class="form-group">
+        <label for="phone-input">Phone</label>
+        <input id="phone-input" class="basics-input" type="text" data-field="phone"
+          placeholder="Enter your phone number" />
+      </div>
+
+      <h3>Education</h3>
+      <div id="education-editor"></div>
+
+      <h3>Experience</h3>
+      <div id="experience-editor"></div>
+
+      <h3>Leadership &amp; Activities</h3>
+      <div id="leadership-editor"></div>
+
+      <h3>Skills &amp; Interests</h3>
+      <div id="skills-editor"></div>
     </section>
 
-    <section id="preview">
-      <!-- live resume preview renders here -->
-      <header class="name-and-contact-info">
-        <h1>
-          FirstName LastName
-        </h1>
-        <p>
-          Home or Campus Street Address &bull; City, State Zip &bull;
-          <a href="mailto:youremail@college.harvard.edu">youremail@college.harvard.edu</a>
-          &bull; phone number
-        </p>
-      </header>
-
-      <section>
-        <h2>
-          Education
-        </h2>
-        <div class="entry-container">
-          <div class="entry-header">
-            <div class="entry-title-block">
-              <h3>
-                Harvard University
-              </h3>
-              <p>
-                Degree, Concentration. GPA [Note: GPA is Optional] <br>
-                Thesis [Note: Optional] <br>
-                Relevant Coursework: [Note: Optional. Awards and honors can also be listed here.] <br>
-                <br>
-                <span>Study Abroad</span> [Note: If Applicable] <br>
-                Study abroad coursework in___. <br>
-                <br>
-                <span>High School Name</span>
-                [Note: May include GPA, SAT/ACT scores, or academic honors an employer may want to know]
-
-              </p>
-            </div>
-            <div class="meta-block">
-              Cambridge, MA <br>
-              Graduation Date<br>
-              <br>
-              City, Country <br>
-              Month Year – Month Year <br>
-              <br>
-              City, State <br>
-              Graduation Date <br>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-
-      <section>
-        <h2>Experience</h2>
-
-        <div class="entry-container">
-          <div class="entry-header">
-            <div class="entry-title-block">
-              <h3>Organization</h3>
-              <p class="heavy-text">Position Title</p>
-            </div>
-
-            <div class="meta-block">
-              City, State (or remote)<br>
-              Month Year – Month Year
-            </div>
-          </div>
-
-          <ul class="describe-experience">
-            <li>
-              Beginning with most recent position, describe your experience, skills,
-              and resulting outcomes in bullet form.
-            </li>
-            <li>
-              Begin each line with an action verb and include details that will help
-              the reader understand your accomplishments, skills, knowledge, abilities,
-              or achievements.
-            </li>
-            <li>Quantify where possible.</li>
-            <li>
-              Do not use personal pronouns; each line should be a phrase rather than a full sentence.
-            </li>
-          </ul>
-        </div>
-      </section>
-
-
-      <section>
-        <h2>Leadership &amp; Activities</h2>
-
-        <div class="entry-container">
-          <div class="entry-header">
-            <div class="entry-title-block">
-              <h3>Organization</h3>
-              <p class="heavy-text">Role</p>
-            </div>
-
-            <div class="meta-block">
-              City, State<br>
-              Month Year – Month Year
-            </div>
-          </div>
-
-          <ul class="describe-experience">
-            <li>
-              This section can be formatted similarly to the Experience section, or you can omit descriptions for
-              activities.
-            </li>
-            <li>
-              If this section is more relevant to the opportunity you are applying for, consider moving this above your
-              Experience section.
-            </li>
-          </ul>
-        </div>
-      </section>
-
-
-      <section>
-        <h2>
-          Skills & Interests [Note: Optional]
-        </h2>
-        <div class="entry-container">
-          <div class="entry-header">
-            <div class="entry-title-block">
-              <h3>
-                Organization
-              </h3>
-              <p class="heavy-text">
-                Position
-              </p>
-            </div>
-            <div class="meta-block">
-              City, State (or remote) <br>
-              Month Year – Month Year
-            </div>
-          </div>
-          <ul class="describe-skills-interest">
-            <li>
-              <span>Technical:</span> List computer software and programming languages and your level of fluency
-            </li>
-            <li>
-              <span>Language:</span> List foreign languages and your level of fluency
-            </li>
-            <li>
-              <span>Laboratory:</span> List scientific / research lab techniques or tools [If Applicable]
-            </li>
-            <li>
-              <span>Interests:</span> List activities you enjoy that may spark interview conversation
-            </li>
-          </ul>
-        </div>
-      </section>
-
-
-    </section>
+    <section id="preview"></section>
   </main>
 
   <!-- type="module" lets us use import/export across our js files -->

@@ -1,1 +1,52 @@
-/* print.css — the actual RESUME OUTPUT. Wrapped in @media print so "Save as PDF" produces a clean page. */
+@page {
+  size: Letter;
+  margin: 0;
+}
+
+@media print {
+  html,
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+  }
+
+  #editor {
+    display: none !important;
+  }
+
+  #app {
+    display: block !important;
+    width: 100% !important;
+    min-height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: white !important;
+  }
+
+  #preview {
+    width: 8.5in !important;
+    min-height: 11in !important;
+    height: 11in !important;
+    padding: 0.55in !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+    box-shadow: none !important;
+    background: white !important;
+    color: black !important;
+    font-size: 10pt !important;
+    line-height: 1.15 !important;
+    overflow: visible !important;
+  }
+
+  .resume-section,
+  .entry-container {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  a {
+    color: black !important;
+    text-decoration: none !important;
+  }
+}

@@ -1,69 +1,353 @@
-/* app.css — styles for the EDITOR UI: forms, buttons, two-pane layout. Screen only. */
+/* app.css — screen styles for editor + resume preview */
+
+/* Page layout */
+
+body {
+  margin: 0;
+  background: #f3f3f3;
+  font-family: Calibri, Arial, sans-serif;
+}
+
+#app {
+  min-height: 100vh;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 340px 8.5in;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  background: #f3f3f3;
+}
+
+/* Editor */
+
+#editor {
+  display: block;
+  background: white;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
+}
+
+#editor h2 {
+  text-align: left;
+  border-bottom: 1px solid black;
+  margin-top: 0;
+}
+
+#editor h3 {
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.entry-editor {
+  padding: 0.85rem;
+  margin-bottom: 0.85rem;
+  border: 1px solid #d6d6d6;
+  border-radius: 0.5rem;
+  background: #fafafa;
+}
+
+.entry-editor-header,
+.nested-editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.entry-editor h4,
+.nested-editor-header h5 {
+  margin: 0;
+}
+
+.nested-editor-block {
+  margin-top: 0.85rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #ddd;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.form-group label {
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+  border: 1px solid #aaa;
+  border-radius: 0.35rem;
+  background: white;
+}
+
+.form-group textarea {
+  resize: vertical;
+  line-height: 1.3;
+}
+
+.inline-control {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.inline-control textarea {
+  flex: 1;
+}
+
+.editor-btn {
+  border: 1px solid #888;
+  border-radius: 0.35rem;
+  padding: 0.45rem 0.65rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  background: white;
+}
+
+.editor-btn:hover {
+  background: #f0f0f0;
+}
+
+.add-btn {
+  width: 100%;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.export-btn {
+  width: 100%;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  background: black;
+  color: white;
+}
+
+.export-btn:hover {
+  background: #333;
+}
+
+.danger-btn {
+  border-color: #9b2c2c;
+  color: #9b2c2c;
+}
+
+.danger-btn:hover {
+  background: #fff0f0;
+}
+
+.small-btn {
+  width: auto;
+  white-space: nowrap;
+  font-size: 0.8rem;
+  padding: 0.35rem 0.5rem;
+}
+
+/* Resume preview canvas */
+
+#preview {
+  width: 8.5in;
+  min-height: 11in;
+  padding: 0.55in;
+  box-sizing: border-box;
+  background: white;
+  color: black;
+  font-family: Calibri, Arial, sans-serif;
+  font-size: 10pt;
+  line-height: 1.15;
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.18);
+}
+
+/* Resume header */
 
 .name-and-contact-info {
   text-align: center;
+  margin-bottom: 0.14in;
 }
 
-h1 {
-  border-bottom: 2px solid black;
+.name-and-contact-info h1 {
+  margin: 0 0 0.04in 0;
+  padding: 0;
+  border: none;
+  font-size: 16pt;
+  line-height: 1.1;
+  font-weight: 700;
 }
 
-h2 {
-  border-bottom: 2px solid black;
-  text-align: center;
-  margin-bottom: 0.5rem;
+.contact-info {
+  margin: 0;
+  font-size: 9.5pt;
+  line-height: 1.15;
 }
+
+/* Resume sections */
+
+.resume-section {
+  margin-bottom: 0.12in;
+}
+
+.resume-section h2 {
+  margin: 0 0 0.055in 0;
+  padding: 0 0 0.015in 0;
+  border-bottom: 1px solid black;
+  text-align: left;
+  font-size: 11pt;
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+/* Resume entries */
 
 .entry-container {
-  margin-bottom: 1rem;
+  margin-bottom: 0.08in;
+  page-break-inside: avoid;
+  break-inside: avoid;
 }
 
 .entry-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 2rem;
+  gap: 0.25in;
 }
 
 .entry-title-block {
   text-align: left;
+  min-width: 0;
 }
 
 .entry-title-block h3,
 .entry-title-block p {
   margin: 0;
-  font-size: 1rem;
+  font-size: 10pt;
+  line-height: 1.12;
+}
+
+.entry-title-block h3 {
+  font-weight: 700;
 }
 
 .meta-block {
   text-align: right;
   white-space: nowrap;
+  font-size: 10pt;
+  line-height: 1.12;
 }
 
 .heavy-text,
 span {
-  font-weight: bold;
+  font-weight: 700;
 }
 
+/* Resume bullets */
+
 .describe-experience {
-  margin-top: 0.35rem;
-  margin-bottom: 0;
-  padding-left: 1.25rem;
-  text-align: left;
+  margin: 0.035in 0 0 0;
+  padding-left: 0.18in;
+  list-style-type: disc;
   list-style-position: outside;
 }
 
 .describe-experience li {
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.025in;
+  padding-left: 0.02in;
+  line-height: 1.15;
 }
+
+/* Skills */
 
 .describe-skills-interest {
   list-style-type: none;
   padding-left: 0;
-  margin-top: 0.35rem;
-  text-align: left;
+  margin: 0;
 }
 
 .describe-skills-interest li {
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.025in;
+  line-height: 1.15;
+}
+
+/* Links */
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.save-status {
+  margin: 0 0 1rem 0;
+  font-size: 0.85rem;
+  color: #2f6f3e;
+  opacity: 0;
+  transition: opacity 160ms ease-in-out;
+}
+
+.save-status.is-visible {
+  opacity: 1;
+}
+
+.detail-textarea {
+  min-height: 110px;
+}
+
+.bullet-input {
+  min-height: 90px;
+}
+
+.form-group textarea {
+  min-height: 90px;
+  resize: vertical;
+  line-height: 1.35;
+}
+
+.detail-textarea {
+  min-height: 90px;
+  resize: vertical;
+  line-height: 1.35;
+}
+
+.form-group textarea {
+  min-height: 90px;
+  resize: vertical;
+  line-height: 1.35;
+}
+
+.detail-textarea {
+  min-height: 100px;
+}
+
+.bullet-input {
+  min-height: 95px;
+}
+
+.page-warning {
+  margin: 0 0 1rem 0;
+  font-size: 0.85rem;
+  color: #9b2c2c;
+  font-weight: bold;
+  display: none;
+}
+
+.page-warning.is-visible {
+  display: block;
+}
+
+#preview.is-overflowing {
+  outline: 3px solid #d97706;
 }
