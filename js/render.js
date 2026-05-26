@@ -1,29 +1,21 @@
 // render.js — turns the current state into the resume preview.
-// Given `resume`, produce the HTML.
-// Makes no decisions and never mutates state.
 
 import { resume } from "./state.js";
-
-function requireElement(selector) {
-  const element = document.querySelector(selector);
-
-  if (!element) {
-    throw new Error(`Missing required element: ${selector}`);
-  }
-
-  return element;
-}
+import { requireElement } from "./utils/dom.js";
+import { escapeHTML } from "./utils/escapeHTML.js";
 
 function renderHeader(basics) {
   return `
     <header class="name-and-contact-info">
-      <h1>${basics.name}</h1>
+      <h1>${escapeHTML(basics.name)}</h1>
 
       <p class="contact-info">
-        ${basics.address} &bull;
-        ${basics.cityState} &bull;
-        <a href="mailto:${basics.email}">${basics.email}</a> &bull;
-        ${basics.phone}
+        ${escapeHTML(basics.address)} &bull;
+        ${escapeHTML(basics.cityState)} &bull;
+        <a href="mailto:${escapeHTML(basics.email)}">${escapeHTML(
+          basics.email
+        )}</a> &bull;
+        ${escapeHTML(basics.phone)}
       </p>
     </header>
   `;
@@ -45,13 +37,13 @@ function renderEntry({
     <div class="entry-container">
       <div class="entry-header">
         <div class="entry-title-block">
-          <h3>${title}</h3>
-          <p${subtitleClassAttribute}>${subtitle}</p>
+          <h3>${escapeHTML(title)}</h3>
+          <p${subtitleClassAttribute}>${escapeHTML(subtitle)}</p>
         </div>
 
         <div class="meta-block">
-          ${location}<br>
-          ${dateRange}
+          ${escapeHTML(location)}<br>
+          ${escapeHTML(dateRange)}
         </div>
       </div>
 
@@ -63,20 +55,20 @@ function renderEntry({
 function renderEducation(educationItems) {
   return educationItems
     .map((item) => {
-      const thesisHTML = item.thesis ? `<p>${item.thesis}</p>` : "";
-      const courseworkHTML = item.coursework ? `<p>${item.coursework}</p>` : "";
-
-      const bodyMarkup = `
-        ${thesisHTML}
-        ${courseworkHTML}
-      `;
+      const thesisHTML = item.thesis ? `<p>${escapeHTML(item.thesis)}</p>` : "";
+      const courseworkHTML = item.coursework
+        ? `<p>${escapeHTML(item.coursework)}</p>`
+        : "";
 
       return renderEntry({
         title: item.school,
         subtitle: item.degree,
         location: item.location,
         dateRange: item.dateRange,
-        body: bodyMarkup,
+        body: `
+          ${thesisHTML}
+          ${courseworkHTML}
+        `,
       });
     })
     .join("");
@@ -86,14 +78,8 @@ function renderBulletedEntries(items) {
   return items
     .map((item) => {
       const bulletItemsHTML = item.bullets
-        .map((bullet) => `<li>${bullet}</li>`)
+        .map((bullet) => `<li>${escapeHTML(bullet)}</li>`)
         .join("");
-
-      const bodyMarkup = `
-        <ul class="describe-experience">
-          ${bulletItemsHTML}
-        </ul>
-      `;
 
       return renderEntry({
         title: item.organization,
@@ -101,7 +87,11 @@ function renderBulletedEntries(items) {
         subtitleClass: "heavy-text",
         location: item.location,
         dateRange: item.dateRange,
-        body: bodyMarkup,
+        body: `
+          <ul class="describe-experience">
+            ${bulletItemsHTML}
+          </ul>
+        `,
       });
     })
     .join("");
@@ -112,7 +102,7 @@ function renderSkills(skillItems) {
     .map((item) => {
       return `
         <li>
-          <span>${item.label}:</span> ${item.text}
+          <span>${escapeHTML(item.label)}:</span> ${escapeHTML(item.text)}
         </li>
       `;
     })
@@ -128,7 +118,7 @@ function renderSkills(skillItems) {
 function renderSection(title, content) {
   return `
     <section class="resume-section">
-      <h2>${title}</h2>
+      <h2>${escapeHTML(title)}</h2>
       ${content}
     </section>
   `;

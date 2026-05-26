@@ -1,5 +1,7 @@
 // storage.js — saves and loads resume data from localStorage.
 
+// storage.js — saves and loads resume data from localStorage.
+
 import { resume, replaceResume } from "./state.js";
 
 const STORAGE_KEY = "resume-builder-data-v1";

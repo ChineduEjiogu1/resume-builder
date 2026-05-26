@@ -88,6 +88,7 @@ export function createDefaultResume() {
   };
 }
 
+// This is the live state object used by render.js, events.js, and storage.js.
 export const resume = createDefaultResume();
 
 export function createEntry(section) {
@@ -139,7 +140,26 @@ export function replaceResume(nextResume) {
     delete resume[key];
   });
 
-  Object.assign(resume, freshResume, nextResume);
+  Object.assign(resume, {
+    ...freshResume,
+    ...nextResume,
+    basics: {
+      ...freshResume.basics,
+      ...(nextResume.basics ?? {}),
+    },
+    education: Array.isArray(nextResume.education)
+      ? nextResume.education
+      : freshResume.education,
+    experience: Array.isArray(nextResume.experience)
+      ? nextResume.experience
+      : freshResume.experience,
+    leadership: Array.isArray(nextResume.leadership)
+      ? nextResume.leadership
+      : freshResume.leadership,
+    skills: Array.isArray(nextResume.skills)
+      ? nextResume.skills
+      : freshResume.skills,
+  });
 }
 
 export function resetResume() {
